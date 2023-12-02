@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="15dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,47 +15,97 @@
         android:text="Welcome to the Tic Tac Toe Game"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:gravity="center"
+        android:layout_marginVertical="20dp"
+        android:gravity="center_horizontal"
         />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btnrestart"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:text="Restart" />
+
+    <Button
+        android:id="@+id/btnnewGame"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="New Game" />
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/txtUserX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="22dp"
+        android:text="User X : 0"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtUserO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="22dp"
+        android:text="User O : 0"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+</RelativeLayout>
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="3"
         android:rowCount="3"
-        android:layout_marginVertical="250dp"
+        android:layout_marginTop="130dp"
         >
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn1"
-            android:onClick="Check"/>
+            android:textSize="50dp"
+            android:onClick="Check" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn2"
+            android:textSize="50dp"
+
             android:onClick="Check"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:textSize="50dp"
             android:id="@+id/btn3"
             android:onClick="Check"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn4"
+            android:textSize="50dp"
             android:onClick="Check"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:textSize="50dp"
             android:id="@+id/btn5"
             android:onClick="Check"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:textSize="50dp"
             android:id="@+id/btn6"
             android:onClick="Check"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:textSize="50dp"
             android:id="@+id/btn7"
             android:onClick="Check"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:textSize="50dp"
             android:id="@+id/btn8"
             android:onClick="Check"/>
         <androidx.appcompat.widget.AppCompatButton
+            android:textSize="50dp"
             android:id="@+id/btn9"
             android:onClick="Check"/>
-
-
     </GridLayout>
-
-
-
 </LinearLayout>

@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
+    Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,btnrestart, btnnewGame;
+    TextView txtUserX,txtUserO;
     String b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    String Winningmove;
+    int UserX=0,UserO=0;
+
     int flag = 0;
     int count=0;
     @Override
@@ -20,6 +25,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
+        btnrestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Restarting the Game...", Toast.LENGTH_SHORT).show();
+                Winningmove="D";
+                Restart();
+            }
+        });
+        btnnewGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "NewGame...", Toast.LENGTH_SHORT).show();
+                Winningmove="D";
+                newGame();
+            }
+        });
 
 
 
@@ -36,12 +58,16 @@ public class MainActivity extends AppCompatActivity {
         btn7 = findViewById(R.id.btn7);
         btn8 = findViewById(R.id.btn8);
         btn9 = findViewById(R.id.btn9);
+        btnrestart = findViewById(R.id.btnrestart);
+        btnnewGame = findViewById(R.id.btnnewGame);
+        txtUserX = findViewById(R.id.txtUserX);
+        txtUserO = findViewById(R.id.txtUserO);
     }
     public void Check(View view){
         Button currentbtn = (Button) view;
-        count++;
 
         if(currentbtn.getText().toString().equals("")) {
+            count++;
             if (flag == 0) {
                 currentbtn.setText("X");
                 flag = 1;
@@ -62,38 +88,66 @@ public class MainActivity extends AppCompatActivity {
                 b9 = btn9.getText().toString();
 
                 if (b1.equals(b2) && b2.equals(b3) && !b1.equals("")) {
-                    Toast.makeText(this, "Winner is" + b1, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
+//                    btn1.setTextSize(34);
+//                    btn2.setTextSize(34);
+//                    btn3.setTextSize(34);
+                    Winningmove = b1;
+                    Restart();
                 } else if (b4.equals(b5) && b5.equals(b6) && !b4.equals("")) {
-                    Toast.makeText(this, "Winner is" + b4, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b4, Toast.LENGTH_SHORT).show();
+                    Winningmove = b4;
+                    Restart();
                 } else if (b7.equals(b8) && b8.equals(b9) && !b7.equals("")) {
-                    Toast.makeText(this, "Winner is" + b7, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b7, Toast.LENGTH_SHORT).show();
+                    Winningmove = b7;
+                    Restart();
                 } else if (b1.equals(b4) && b4.equals(b7) && !b1.equals("")) {
-                    Toast.makeText(this, "Winner is" + b1, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
+                    Winningmove = b1;
+                    Restart();
                 } else if (b2.equals(b5) && b5.equals(b8) && !b2.equals("")) {
-                    Toast.makeText(this, "Winner is" + b2, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b2, Toast.LENGTH_SHORT).show();
+                    Winningmove = b2;
+                    Restart();
                 } else if (b3.equals(b6) && b6.equals(b9) && !b3.equals("")) {
-                    Toast.makeText(this, "Winner is" + b3, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
+                    Winningmove = b3;
+                    Restart();
                 } else if (b1.equals(b5) && b5.equals(b9) && !b1.equals("")) {
-                    Toast.makeText(this, "Winner is" + b1, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
+                    Winningmove = b1;
+                    Restart();
                 } else if (b3.equals(b5) && b5.equals(b7) && !b3.equals("")) {
-                    Toast.makeText(this, "Winner is" + b3, Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
+                    Winningmove = b3;
+                    Restart();
                 } else if (count==9) {
                     Toast.makeText(this, "Match is Drawn", Toast.LENGTH_SHORT).show();
-                    newGame();
+                    Winningmove="D";
+                    Restart();
                 }
             }
         }
 
     }
+
     public void newGame(){
+        UserX=0;UserO=0;flag=0;count=0;
+        txtUserX.setText("User X : "+UserX);
+        txtUserO.setText("User O : "+UserO);
+        Winningmove = "D";
+        btn1.setText("");
+        btn2.setText("");
+        btn3.setText("");
+        btn4.setText("");
+        btn5.setText("");
+        btn6.setText("");
+        btn7.setText("");
+        btn8.setText("");
+        btn9.setText("");
+    }
+    public void Restart(){
 
        new Handler().postDelayed(new Runnable() {
            @Override
@@ -107,10 +161,20 @@ public class MainActivity extends AppCompatActivity {
                btn7.setText("");
                btn8.setText("");
                btn9.setText("");
-               flag=0;
+               if(Winningmove.equals("X")){
+                   UserX++;
+                   txtUserX.setText("User X : "+UserX);
+                   flag=0;
+               }else if(Winningmove.equals("0")){
+                   UserO++;
+                   txtUserO.setText("User O : "+UserO);
+                   flag = 1;
+               }else {
+
+               }
                count=0;
            }
-       },4000);
+       },3000);
 
 
     }
