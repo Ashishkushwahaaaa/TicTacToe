@@ -15,10 +15,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtUserX,txtUserO;
     String b1, b2, b3, b4, b5, b6, b7, b8, b9;
     String Winningmove;
-    int UserX=0,UserO=0;
-
-    int flag = 0;
-    int count=0;
+    int UserX=0,UserO=0,countX=0,countO=0,flag = 0,count=0;
+    Boolean WinnerDeclared = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Restarting the Game...", Toast.LENGTH_SHORT).show();
-                Winningmove="D";
                 Restart();
             }
         });
@@ -64,15 +61,17 @@ public class MainActivity extends AppCompatActivity {
         txtUserO = findViewById(R.id.txtUserO);
     }
     public void Check(View view){
+        if(WinnerDeclared==false){
         Button currentbtn = (Button) view;
-
         if(currentbtn.getText().toString().equals("")) {
             count++;
             if (flag == 0) {
                 currentbtn.setText("X");
+                countX++;
                 flag = 1;
             } else {
                 currentbtn.setText("0");
+                countO++;
                 flag = 0;
             }
 
@@ -93,41 +92,55 @@ public class MainActivity extends AppCompatActivity {
 //                    btn2.setTextSize(34);
 //                    btn3.setTextSize(34);
                     Winningmove = b1;
-                    Restart();
+                    Winner();
                 } else if (b4.equals(b5) && b5.equals(b6) && !b4.equals("")) {
                     Toast.makeText(this, "Winner is " + b4, Toast.LENGTH_SHORT).show();
                     Winningmove = b4;
-                    Restart();
+                    Winner();
                 } else if (b7.equals(b8) && b8.equals(b9) && !b7.equals("")) {
                     Toast.makeText(this, "Winner is " + b7, Toast.LENGTH_SHORT).show();
                     Winningmove = b7;
-                    Restart();
+                    Winner();
                 } else if (b1.equals(b4) && b4.equals(b7) && !b1.equals("")) {
                     Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
                     Winningmove = b1;
-                    Restart();
+                    Winner();
                 } else if (b2.equals(b5) && b5.equals(b8) && !b2.equals("")) {
                     Toast.makeText(this, "Winner is " + b2, Toast.LENGTH_SHORT).show();
                     Winningmove = b2;
-                    Restart();
+                    Winner();
                 } else if (b3.equals(b6) && b6.equals(b9) && !b3.equals("")) {
                     Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
                     Winningmove = b3;
-                    Restart();
+                    Winner();
                 } else if (b1.equals(b5) && b5.equals(b9) && !b1.equals("")) {
                     Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
                     Winningmove = b1;
-                    Restart();
+                    Winner();
                 } else if (b3.equals(b5) && b5.equals(b7) && !b3.equals("")) {
                     Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
                     Winningmove = b3;
-                    Restart();
-                } else if (count==9) {
+                    Winner();
+                } else if (count == 9) {
                     Toast.makeText(this, "Match is Drawn", Toast.LENGTH_SHORT).show();
-                    Winningmove="D";
-                    Restart();
+//                    Winningmove="D";
+
+                    if (countX > countO || (countX == countO && flag == 0)) {
+                        countX = 0;
+                        countO = 0;
+//            Winningmove="X";
+                        flag = 0;
+                    } else if (countO > countX || (countO == countX && flag == 1)) {
+                        countX = 0;
+                        countO = 0;
+//            Winningmove="O";
+                        flag = 1;
+                    }
+                    Winner();
                 }
             }
+        }
+
         }
 
     }
@@ -147,8 +160,10 @@ public class MainActivity extends AppCompatActivity {
         btn8.setText("");
         btn9.setText("");
     }
-    public void Restart(){
+    public void Winner(){
+        if(btn1.getText().toString().equals("")){
 
+        }
        new Handler().postDelayed(new Runnable() {
            @Override
            public void run() {
@@ -169,13 +184,51 @@ public class MainActivity extends AppCompatActivity {
                    UserO++;
                    txtUserO.setText("User O : "+UserO);
                    flag = 1;
-               }else {
-
                }
+//               else if(countX>countO || (countX==countO && flag==0) ){
+//                   countX=0;countO=0;
+//                   Winningmove="X";
+//                   flag=0;
+//               }else if(countO>countX || (countO==countX && flag==1)){
+//                   countX=0;countO=0;
+//                   Winningmove="O";
+//                   flag=1;
+//               }
                count=0;
            }
        },3000);
 
+
+    }
+
+    public void Restart(){
+//        Checking the first move of the current game play
+//        It helps to keep the first move to the player who started this current game after pressing the Restart button
+        if(countX>countO || (countX==countO && flag==0) ){
+            countX=0;countO=0;
+//            Winningmove="X";
+            flag=0;
+        }else if(countO>countX || (countO==countX && flag==1)){
+            countX=0;countO=0;
+//            Winningmove="O";
+            flag=1;
+        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn1.setText("");
+                btn2.setText("");
+                btn3.setText("");
+                btn4.setText("");
+                btn5.setText("");
+                btn6.setText("");
+                btn7.setText("");
+                btn8.setText("");
+                btn9.setText("");
+
+                count=0;
+            }
+        },1000);
 
     }
 }
