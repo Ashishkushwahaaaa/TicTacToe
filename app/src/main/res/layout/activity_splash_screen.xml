@@ -6,12 +6,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
-    android:gravity="center">
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/txtTic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tic"
+            android:textColor="#EA6060"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginTop="210dp"/>
+
+        <TextView
+            android:id="@+id/txtTac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:text="Tac"
+            android:textColor="#5A73FF"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginTop="210dp"/>
+
+        <TextView
+            android:id="@+id/txtToe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:text="Toe"
+            android:textColor="#EA6060"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginTop="210dp"/>
+
+
+    </RelativeLayout>
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:lottie_rawRes="@raw/animationlottie"
-        app:lottie_autoPlay="true"/>
+        android:layout_gravity="center_horizontal"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/animationlottie" />
 
 </LinearLayout>

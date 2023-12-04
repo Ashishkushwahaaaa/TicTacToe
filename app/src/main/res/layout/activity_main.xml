@@ -7,7 +7,8 @@
     tools:context=".MainActivity"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:backgroundTint="@color/white">
 
     <TextView
         android:layout_width="match_parent"
@@ -62,50 +63,66 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 </RelativeLayout>
+<RelativeLayout
+    android:layout_width="254dp"
+    android:layout_height="258dp"
+    android:layout_marginTop="130dp"
+    android:background="@color/black">
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="3"
         android:rowCount="3"
-        android:layout_marginTop="130dp"
-        >
+        android:layout_marginTop="-8dp"
+        android:layout_marginLeft="-5dp">
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn1"
-            android:textSize="50dp"
-            android:onClick="Check" />
+            android:textSize="55dp"
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn2"
-            android:textSize="50dp"
-
-            android:onClick="Check"/>
+            android:textSize="55dp"
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:textSize="50dp"
+            android:textSize="55dp"
             android:id="@+id/btn3"
-            android:onClick="Check"/>
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn4"
-            android:textSize="50dp"
-            android:onClick="Check"/>
+            android:textSize="55dp"
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:textSize="50dp"
+            android:textSize="55dp"
             android:id="@+id/btn5"
-            android:onClick="Check"/>
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:textSize="50dp"
+            android:textSize="55dp"
             android:id="@+id/btn6"
-            android:onClick="Check"/>
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:textSize="50dp"
+            android:textSize="55dp"
             android:id="@+id/btn7"
-            android:onClick="Check"/>
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:textSize="50dp"
+            android:textSize="55dp"
             android:id="@+id/btn8"
-            android:onClick="Check"/>
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:textSize="50dp"
+            android:textSize="55dp"
             android:id="@+id/btn9"
-            android:onClick="Check"/>
+            android:onClick="Check"
+            android:backgroundTint="@color/white"/>
     </GridLayout>
+</RelativeLayout>
+
 </LinearLayout>
