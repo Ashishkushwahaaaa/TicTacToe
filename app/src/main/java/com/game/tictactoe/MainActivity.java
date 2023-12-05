@@ -1,5 +1,6 @@
 package com.game.tictactoe;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.color.utilities.ColorUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
-
+        if (flag==0) {
+            txtUserX.setTextColor(Color.RED);
+        }
         btnrestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,11 +78,17 @@ public class MainActivity extends AppCompatActivity {
             if (currentbtn.getText().toString().equals("")) {
                 count++;
                 if (flag == 0) {
+                    currentbtn.setTextColor(Color.RED);
                     currentbtn.setText("X");
                     flag = 1;
+                    txtUserX.setTextColor(Color.BLACK);
+                    txtUserO.setTextColor(Color.BLUE);
                 } else {
+                    currentbtn.setTextColor(Color.BLUE);
                     currentbtn.setText("0");
                     flag = 0;
+                    txtUserO.setTextColor(Color.BLACK);
+                    txtUserX.setTextColor(Color.RED);
                 }
 
                 if (count > 4) {
@@ -159,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
         btn7.setText("");
         btn8.setText("");
         btn9.setText("");
+        txtUserO.setTextColor(Color.BLACK);
+        txtUserX.setTextColor(Color.RED);
     }
     public void Restart(){
 
@@ -179,10 +192,14 @@ public class MainActivity extends AppCompatActivity {
                     UserX++;
                     txtUserX.setText("User X : "+UserX);
                     flag=0;
+                    txtUserO.setTextColor(Color.BLACK);
+                    txtUserX.setTextColor(Color.RED);
                 }else if(Winningmove.equals("0")){
                     UserO++;
                     txtUserO.setText("User O : "+UserO);
                     flag = 1;
+                    txtUserX.setTextColor(Color.BLACK);
+                    txtUserO.setTextColor(Color.BLUE);
                 }else {
 
                 }

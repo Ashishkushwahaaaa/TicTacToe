@@ -81,7 +81,8 @@
             android:id="@+id/btn1"
             android:textSize="55dp"
             android:onClick="Check"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn2"
             android:textSize="55dp"
