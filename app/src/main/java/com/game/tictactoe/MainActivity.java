@@ -1,9 +1,7 @@
 package com.game.tictactoe;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -11,33 +9,25 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.color.utilities.ColorUtils;
-
 public class MainActivity extends AppCompatActivity {
 
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,btnrestart, btnnewGame;
     TextView txtUserX,txtUserO;
     String b1, b2, b3, b4, b5, b6, b7, b8, b9;
     String Winningmove;
-    static Boolean WinnerDeclared = false;
-    int UserX=0,UserO=0;
-
-    int flag = 0;
-    int count=0;
+    int UserX=0,UserO=0,countX=0,countO=0,flag = 0,count=0;
+    Boolean WinnerDeclared = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         init();
-        if (flag==0) {
-            txtUserX.setTextColor(Color.RED);
-        }
+
         btnrestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Restarting the Game...", Toast.LENGTH_SHORT).show();
-                Winningmove="D";
                 Restart();
             }
         });
@@ -70,90 +60,89 @@ public class MainActivity extends AppCompatActivity {
         txtUserX = findViewById(R.id.txtUserX);
         txtUserO = findViewById(R.id.txtUserO);
     }
-
     public void Check(View view){
-        if(WinnerDeclared==false) {
-            Button currentbtn = (Button) view;
+        if(WinnerDeclared==false){
+        Button currentbtn = (Button) view;
+        if(currentbtn.getText().toString().equals("")) {
+            count++;
+            if (flag == 0) {
+                currentbtn.setText("X");
+                countX++;
+                flag = 1;
+            } else {
+                currentbtn.setText("0");
+                countO++;
+                flag = 0;
+            }
 
-            if (currentbtn.getText().toString().equals("")) {
-                count++;
-                if (flag == 0) {
-                    currentbtn.setTextColor(Color.RED);
-                    currentbtn.setText("X");
-                    flag = 1;
-                    txtUserX.setTextColor(Color.BLACK);
-                    txtUserO.setTextColor(Color.BLUE);
-                } else {
-                    currentbtn.setTextColor(Color.BLUE);
-                    currentbtn.setText("0");
-                    flag = 0;
-                    txtUserO.setTextColor(Color.BLACK);
-                    txtUserX.setTextColor(Color.RED);
-                }
+            if (count > 4) {
+                b1 = btn1.getText().toString();
+                b2 = btn2.getText().toString();
+                b3 = btn3.getText().toString();
+                b4 = btn4.getText().toString();
+                b5 = btn5.getText().toString();
+                b6 = btn6.getText().toString();
+                b7 = btn7.getText().toString();
+                b8 = btn8.getText().toString();
+                b9 = btn9.getText().toString();
 
-                if (count > 4) {
-                    b1 = btn1.getText().toString();
-                    b2 = btn2.getText().toString();
-                    b3 = btn3.getText().toString();
-                    b4 = btn4.getText().toString();
-                    b5 = btn5.getText().toString();
-                    b6 = btn6.getText().toString();
-                    b7 = btn7.getText().toString();
-                    b8 = btn8.getText().toString();
-                    b9 = btn9.getText().toString();
-
-                    if (b1.equals(b2) && b2.equals(b3) && !b1.equals("")) {
-                        Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
+                if (b1.equals(b2) && b2.equals(b3) && !b1.equals("")) {
+                    Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
 //                    btn1.setTextSize(34);
 //                    btn2.setTextSize(34);
 //                    btn3.setTextSize(34);
-                        Winningmove = b1;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (b4.equals(b5) && b5.equals(b6) && !b4.equals("")) {
-                        Toast.makeText(this, "Winner is " + b4, Toast.LENGTH_SHORT).show();
-                        Winningmove = b4;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (b7.equals(b8) && b8.equals(b9) && !b7.equals("")) {
-                        Toast.makeText(this, "Winner is " + b7, Toast.LENGTH_SHORT).show();
-                        Winningmove = b7;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (b1.equals(b4) && b4.equals(b7) && !b1.equals("")) {
-                        Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
-                        Winningmove = b1;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (b2.equals(b5) && b5.equals(b8) && !b2.equals("")) {
-                        Toast.makeText(this, "Winner is " + b2, Toast.LENGTH_SHORT).show();
-                        Winningmove = b2;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (b3.equals(b6) && b6.equals(b9) && !b3.equals("")) {
-                        Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
-                        Winningmove = b3;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (b1.equals(b5) && b5.equals(b9) && !b1.equals("")) {
-                        Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
-                        Winningmove = b1;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (b3.equals(b5) && b5.equals(b7) && !b3.equals("")) {
-                        Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
-                        Winningmove = b3;
-                        WinnerDeclared=true;
-                        Restart();
-                    } else if (count == 9) {
-                        Toast.makeText(this, "Match is Drawn", Toast.LENGTH_SHORT).show();
-                        Winningmove = "D";
-                        WinnerDeclared=true;
-                        Restart();
+                    Winningmove = b1;
+                    Winner();
+                } else if (b4.equals(b5) && b5.equals(b6) && !b4.equals("")) {
+                    Toast.makeText(this, "Winner is " + b4, Toast.LENGTH_SHORT).show();
+                    Winningmove = b4;
+                    Winner();
+                } else if (b7.equals(b8) && b8.equals(b9) && !b7.equals("")) {
+                    Toast.makeText(this, "Winner is " + b7, Toast.LENGTH_SHORT).show();
+                    Winningmove = b7;
+                    Winner();
+                } else if (b1.equals(b4) && b4.equals(b7) && !b1.equals("")) {
+                    Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
+                    Winningmove = b1;
+                    Winner();
+                } else if (b2.equals(b5) && b5.equals(b8) && !b2.equals("")) {
+                    Toast.makeText(this, "Winner is " + b2, Toast.LENGTH_SHORT).show();
+                    Winningmove = b2;
+                    Winner();
+                } else if (b3.equals(b6) && b6.equals(b9) && !b3.equals("")) {
+                    Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
+                    Winningmove = b3;
+                    Winner();
+                } else if (b1.equals(b5) && b5.equals(b9) && !b1.equals("")) {
+                    Toast.makeText(this, "Winner is " + b1, Toast.LENGTH_SHORT).show();
+                    Winningmove = b1;
+                    Winner();
+                } else if (b3.equals(b5) && b5.equals(b7) && !b3.equals("")) {
+                    Toast.makeText(this, "Winner is " + b3, Toast.LENGTH_SHORT).show();
+                    Winningmove = b3;
+                    Winner();
+                } else if (count == 9) {
+                    Toast.makeText(this, "Match is Drawn", Toast.LENGTH_SHORT).show();
+//                    Winningmove="D";
+
+                    if (countX > countO || (countX == countO && flag == 0)) {
+                        countX = 0;
+                        countO = 0;
+//            Winningmove="X";
+                        flag = 0;
+                    } else if (countO > countX || (countO == countX && flag == 1)) {
+                        countX = 0;
+                        countO = 0;
+//            Winningmove="O";
+                        flag = 1;
                     }
+                    Winner();
                 }
             }
         }
+
+        }
+
     }
 
     public void newGame(){
@@ -170,11 +159,60 @@ public class MainActivity extends AppCompatActivity {
         btn7.setText("");
         btn8.setText("");
         btn9.setText("");
-        txtUserO.setTextColor(Color.BLACK);
-        txtUserX.setTextColor(Color.RED);
     }
-    public void Restart(){
+    public void Winner(){
+        if(btn1.getText().toString().equals("")){
 
+        }
+       new Handler().postDelayed(new Runnable() {
+           @Override
+           public void run() {
+               btn1.setText("");
+               btn2.setText("");
+               btn3.setText("");
+               btn4.setText("");
+               btn5.setText("");
+               btn6.setText("");
+               btn7.setText("");
+               btn8.setText("");
+               btn9.setText("");
+               if(Winningmove.equals("X")){
+                   UserX++;
+                   txtUserX.setText("User X : "+UserX);
+                   flag=0;
+               }else if(Winningmove.equals("0")){
+                   UserO++;
+                   txtUserO.setText("User O : "+UserO);
+                   flag = 1;
+               }
+//               else if(countX>countO || (countX==countO && flag==0) ){
+//                   countX=0;countO=0;
+//                   Winningmove="X";
+//                   flag=0;
+//               }else if(countO>countX || (countO==countX && flag==1)){
+//                   countX=0;countO=0;
+//                   Winningmove="O";
+//                   flag=1;
+//               }
+               count=0;
+           }
+       },3000);
+
+
+    }
+
+    public void Restart(){
+//        Checking the first move of the current game play
+//        It helps to keep the first move to the player who started this current game after pressing the Restart button
+        if(countX>countO || (countX==countO && flag==0) ){
+            countX=0;countO=0;
+//            Winningmove="X";
+            flag=0;
+        }else if(countO>countX || (countO==countX && flag==1)){
+            countX=0;countO=0;
+//            Winningmove="O";
+            flag=1;
+        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -187,26 +225,10 @@ public class MainActivity extends AppCompatActivity {
                 btn7.setText("");
                 btn8.setText("");
                 btn9.setText("");
-                WinnerDeclared=false;
-                if(Winningmove.equals("X")){
-                    UserX++;
-                    txtUserX.setText("User X : "+UserX);
-                    flag=0;
-                    txtUserO.setTextColor(Color.BLACK);
-                    txtUserX.setTextColor(Color.RED);
-                }else if(Winningmove.equals("0")){
-                    UserO++;
-                    txtUserO.setText("User O : "+UserO);
-                    flag = 1;
-                    txtUserX.setTextColor(Color.BLACK);
-                    txtUserO.setTextColor(Color.BLUE);
-                }else {
 
-                }
                 count=0;
             }
         },1000);
-
 
     }
 }
